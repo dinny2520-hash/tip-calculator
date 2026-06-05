@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>คิดทิปนักดนตรี</title>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Sarabun', sans-serif; background: #f5f4f0; color: #1a1a1a; min-height: 100vh; padding: 2rem 1rem; }
@@ -42,67 +43,45 @@ h1 { font-size: 22px; font-weight: 700; margin-bottom: 1.5rem; color: #1a1a1a; }
 .metric-value.muted { font-size: 18px; color: #555; }
 .notice { background: #eaf6ef; border: 1px solid #b2dfc6; border-radius: 12px; padding: 14px 16px; font-size: 15px; color: #1a5c38; display: none; margin-bottom: 1.5rem; }
 .notice strong { font-weight: 700; }
-.btn-share { display: block; width: 100%; padding: 16px; background: #1a1a1a; color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer; margin-bottom: 2rem; display: none; }
+.btn-share { display: none; width: 100%; padding: 16px; background: #1a1a1a; color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer; margin-bottom: 2rem; }
 .btn-share:active { background: #333; }
 
-/* ===== SHARE CARD ===== */
-#shareOverlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; align-items: center; justify-content: center; padding: 1rem; }
+/* OVERLAY */
+#shareOverlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 100; align-items: center; justify-content: center; padding: 1rem; flex-direction: column; gap: 16px; }
 #shareOverlay.show { display: flex; }
+
+/* SHARE CARD */
 #shareCard {
   width: 360px;
-  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: #1a1a2e;
   border-radius: 24px;
-  padding: 0;
   overflow: hidden;
-  position: relative;
   font-family: 'Sarabun', sans-serif;
 }
-.card-header {
-  padding: 24px 24px 16px;
-  text-align: center;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
+.card-header { padding: 24px 24px 16px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); background: #16213e; }
 .card-header .emoji { font-size: 32px; margin-bottom: 6px; }
 .card-header h2 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 2px; }
-.card-header .subtitle { font-size: 13px; color: rgba(255,255,255,0.5); }
-.card-body { padding: 20px 24px; }
+.card-header .subtitle { font-size: 13px; color: rgba(255,255,255,0.45); }
+.card-body { padding: 16px 24px 4px; }
 .card-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
 .card-row:last-child { border-bottom: none; }
-.card-row .lbl { font-size: 13px; color: rgba(255,255,255,0.55); }
+.card-row .lbl { font-size: 13px; color: rgba(255,255,255,0.5); }
 .card-row .val { font-size: 15px; font-weight: 600; color: #fff; }
-.card-highlight {
-  margin: 16px 24px;
-  background: linear-gradient(135deg, #f7c948 0%, #f5a623 100%);
-  border-radius: 16px;
-  padding: 18px 20px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.card-highlight .hl-label { font-size: 14px; font-weight: 600; color: #7a4a00; }
-.card-highlight .hl-amount { font-size: 32px; font-weight: 700; color: #3a2000; }
-.card-highlight .hl-sub { font-size: 12px; color: rgba(58,32,0,0.7); margin-top: 2px; }
-.card-fund {
-  margin: 0 24px 20px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 12px;
-  padding: 14px 18px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.card-fund .f-label { font-size: 13px; color: rgba(255,255,255,0.6); }
-.card-fund .f-val { font-size: 18px; font-weight: 700; color: #7ef5c0; }
-.card-footer {
-  background: rgba(0,0,0,0.2);
-  padding: 12px 24px;
-  text-align: center;
-  font-size: 12px;
-  color: rgba(255,255,255,0.3);
-}
-.overlay-btns { display: flex; gap: 10px; margin-top: 16px; width: 360px; }
-.overlay-btns button {
-  flex: 1; padding: 14px; border: none; border-radius: 12px;
-  font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer;
-}
+.card-highlight { margin: 12px 24px; background: linear-gradient(135deg, #f7c948, #f5a623); border-radius: 16px; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; }
+.card-highlight .hl-label { font-size: 14px; font-weight: 700; color: #7a4a00; }
+.card-highlight .hl-amount { font-size: 34px; font-weight: 700; color: #3a2000; }
+.card-highlight .hl-sub { font-size: 11px; color: rgba(58,32,0,0.65); margin-top: 2px; }
+.card-fund { margin: 0 24px 16px; background: rgba(255,255,255,0.08); border-radius: 12px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; }
+.card-fund .f-label { font-size: 13px; color: rgba(255,255,255,0.55); }
+.card-fund .f-val { font-size: 20px; font-weight: 700; color: #7ef5c0; }
+.card-footer { background: rgba(0,0,0,0.25); padding: 12px 24px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.3); }
+
+/* BUTTONS BELOW CARD */
+.overlay-btns { display: flex; gap: 10px; width: 360px; }
+.overlay-btns button { flex: 1; padding: 14px; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; }
 .btn-close-overlay { background: rgba(255,255,255,0.15); color: #fff; }
-.btn-hint { background: #fff; color: #1a1a1a; font-size: 13px; }
+.btn-download { background: #f7c948; color: #3a2000; }
+.btn-download:active { opacity: 0.85; }
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { opacity: 1; }
@@ -192,126 +171,154 @@ input[type=number]::-webkit-outer-spin-button { opacity: 1; }
     ✅ <span id="summaryText"></span>
   </div>
 
-  <button class="btn-share" id="btnShare" onclick="showCard()">📤 ดูการ์ดสรุป (สำหรับ screenshot)</button>
+  <button class="btn-share" id="btnShare" onclick="showCard()">📤 สรุปผลเป็นรูป</button>
 </div>
 
-<!-- SHARE OVERLAY -->
-<div id="shareOverlay" onclick="closeOverlay(event)">
-  <div>
-    <div id="shareCard">
-      <div class="card-header">
-        <div class="emoji">🎸</div>
-        <h2>สรุปทิปคืนนี้</h2>
-        <div class="subtitle" id="cardDate"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-row">
-          <span class="lbl">ทิปรวมทั้งหมด</span>
-          <span class="val" id="cTotal">–</span>
-        </div>
-        <div class="card-row">
-          <span class="lbl">หักค่าซ้อม</span>
-          <span class="val" id="cPractice">–</span>
-        </div>
-        <div class="card-row">
-          <span class="lbl">จำนวนนักดนตรี</span>
-          <span class="val" id="cMusicians">–</span>
-        </div>
-      </div>
-      <div class="card-highlight">
-        <div>
-          <div class="hl-label">💰 แต่ละคนได้</div>
-          <div class="hl-sub" id="cExact"></div>
-        </div>
-        <div class="hl-amount" id="cRounded">–</div>
-      </div>
-      <div class="card-fund">
-        <span class="f-label">🏦 เข้ากองทุน</span>
-        <span class="f-val" id="cFund">–</span>
-      </div>
-      <div class="card-footer">screenshot แล้วส่งในกลุ่มได้เลย 🎵</div>
+<!-- OVERLAY -->
+<div id="shareOverlay" onclick="overlayClick(event)">
+  <div id="shareCard">
+    <div class="card-header">
+      <div class="emoji">🎸</div>
+      <h2>สรุปทิปคืนนี้</h2>
+      <div class="subtitle" id="cardDate"></div>
     </div>
-    <div class="overlay-btns">
-      <button class="btn-close-overlay" onclick="closeCard()">✕ ปิด</button>
-      <button class="btn-hint">📸 กด screenshot แล้วส่งไลน์</button>
+    <div class="card-body">
+      <div class="card-row">
+        <span class="lbl">ทิปรวมทั้งหมด</span>
+        <span class="val" id="cTotal">–</span>
+      </div>
+      <div class="card-row" id="cPracticeRow">
+        <span class="lbl">หักค่าซ้อม</span>
+        <span class="val" id="cPractice">–</span>
+      </div>
+      <div class="card-row">
+        <span class="lbl">จำนวนนักดนตรี</span>
+        <span class="val" id="cMusicians">–</span>
+      </div>
     </div>
+    <div class="card-highlight">
+      <div>
+        <div class="hl-label">💰 แต่ละคนได้</div>
+        <div class="hl-sub" id="cExact"></div>
+      </div>
+      <div class="hl-amount" id="cRounded">–</div>
+    </div>
+    <div class="card-fund">
+      <span class="f-label">🏦 เข้ากองทุน</span>
+      <span class="f-val" id="cFund">–</span>
+    </div>
+    <div class="card-footer">🎵 คิดทิปนักดนตรีในวง</div>
+  </div>
+  <div class="overlay-btns">
+    <button class="btn-close-overlay" onclick="closeCard()">✕ ปิด</button>
+    <button class="btn-download" onclick="downloadCard()">⬇️ บันทึกรูป</button>
   </div>
 </div>
 
 <script>
-var _rounded = 0, _fund = 0, _exact = 0, _total = 0, _practice = 0, _musicians = 0;
+var _rounded=0,_fund=0,_exact=0,_total=0,_practice=0,_musicians=0;
 
-function v(id) { return parseFloat(document.getElementById(id).value) || 0; }
-function fmt(n) { return '฿' + n.toLocaleString('th-TH'); }
-function roundDown20(n) { if (n <= 0) return 0; return Math.floor(n / 20) * 20; }
+function v(id){ return parseFloat(document.getElementById(id).value)||0; }
+function fmt(n){ return '฿'+n.toLocaleString('th-TH'); }
+function roundDown20(n){ if(n<=0) return 0; return Math.floor(n/20)*20; }
 
-function calc() {
+function calc(){
   var b1000=v('b1000'),b500=v('b500'),b100=v('b100'),b50=v('b50'),b20=v('b20');
-  document.getElementById('t1000').textContent = fmt(b1000*1000);
-  document.getElementById('t500').textContent  = fmt(b500*500);
-  document.getElementById('t100').textContent  = fmt(b100*100);
-  document.getElementById('t50').textContent   = fmt(b50*50);
-  document.getElementById('t20').textContent   = fmt(b20*20);
+  document.getElementById('t1000').textContent=fmt(b1000*1000);
+  document.getElementById('t500').textContent=fmt(b500*500);
+  document.getElementById('t100').textContent=fmt(b100*100);
+  document.getElementById('t50').textContent=fmt(b50*50);
+  document.getElementById('t20').textContent=fmt(b20*20);
 
-  var total = b1000*1000 + b500*500 + b100*100 + b50*50 + b20*20;
-  document.getElementById('grandTotal').textContent = fmt(total);
+  var total=b1000*1000+b500*500+b100*100+b50*50+b20*20;
+  document.getElementById('grandTotal').textContent=fmt(total);
 
-  var fundFixed = 100;
-  var practice = v('practiceDeduct');
-  var after = total - fundFixed - practice;
-  document.getElementById('afterDeduct').textContent = fmt(Math.max(0, after));
+  var fundFixed=100, practice=v('practiceDeduct');
+  var after=total-fundFixed-practice;
+  document.getElementById('afterDeduct').textContent=fmt(Math.max(0,after));
 
-  var musicians = Math.max(1, Math.round(v('numMusicians')));
+  var musicians=Math.max(1,Math.round(v('numMusicians')));
 
-  if (after <= 0) {
+  if(after<=0){
     ['perPersonExact','perPersonRounded','totalPaid','fundTotal'].forEach(function(id){
-      document.getElementById(id).textContent = '–';
+      document.getElementById(id).textContent='–';
     });
-    document.getElementById('summaryNotice').style.display = 'none';
-    document.getElementById('btnShare').style.display = 'none';
+    document.getElementById('summaryNotice').style.display='none';
+    document.getElementById('btnShare').style.display='none';
     return;
   }
 
-  var exact    = after / musicians;
-  var rounded  = roundDown20(exact);
-  var totalPaid= rounded * musicians;
-  var remainder= after - totalPaid;
-  var fundTotal= fundFixed + remainder;
+  var exact=after/musicians;
+  var rounded=roundDown20(exact);
+  var totalPaid=rounded*musicians;
+  var remainder=after-totalPaid;
+  var fundTotal=fundFixed+remainder;
 
-  _rounded=rounded; _fund=fundTotal; _exact=exact; _total=total; _practice=practice; _musicians=musicians;
+  _rounded=rounded;_fund=fundTotal;_exact=exact;_total=total;_practice=practice;_musicians=musicians;
 
-  document.getElementById('perPersonExact').textContent   = fmt(Math.round(exact));
-  document.getElementById('perPersonRounded').textContent = fmt(rounded);
-  document.getElementById('totalPaid').textContent        = fmt(totalPaid);
-  document.getElementById('fundTotal').textContent        = fmt(fundTotal);
+  document.getElementById('perPersonExact').textContent=fmt(Math.round(exact));
+  document.getElementById('perPersonRounded').textContent=fmt(rounded);
+  document.getElementById('totalPaid').textContent=fmt(totalPaid);
+  document.getElementById('fundTotal').textContent=fmt(fundTotal);
 
-  document.getElementById('summaryNotice').style.display = 'block';
-  document.getElementById('summaryText').innerHTML =
+  document.getElementById('summaryNotice').style.display='block';
+  document.getElementById('summaryText').innerHTML=
     'จ่ายนักดนตรี <strong>'+musicians+' คน</strong> คนละ <strong>'+fmt(rounded)+'</strong> &nbsp;|&nbsp; เหลือเข้ากองทุน <strong>'+fmt(fundTotal)+'</strong>';
 
-  document.getElementById('btnShare').style.display = 'block';
+  document.getElementById('btnShare').style.display='block';
 }
 
-function showCard() {
-  var now = new Date();
-  var days = ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัส','ศุกร์','เสาร์'];
-  var dateStr = 'วน'+days[now.getDay()]+' '+now.getDate()+'/'+(now.getMonth()+1)+'/'+(now.getFullYear()+543);
-  document.getElementById('cardDate').textContent = dateStr;
-  document.getElementById('cTotal').textContent    = fmt(_total);
-  document.getElementById('cPractice').textContent = _practice > 0 ? fmt(_practice) : '–';
-  document.getElementById('cMusicians').textContent= _musicians + ' คน';
-  document.getElementById('cRounded').textContent  = fmt(_rounded);
-  document.getElementById('cExact').textContent    = 'ยอดจริง '+fmt(Math.round(_exact))+' → ปัดเป็น';
-  document.getElementById('cFund').textContent     = fmt(_fund);
+function showCard(){
+  var now=new Date();
+  var days=['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัส','ศุกร์','เสาร์'];
+  document.getElementById('cardDate').textContent='วัน'+days[now.getDay()]+' '+now.getDate()+'/'+(now.getMonth()+1)+'/'+(now.getFullYear()+543);
+  document.getElementById('cTotal').textContent=fmt(_total);
+  var practiceRow=document.getElementById('cPracticeRow');
+  if(_practice>0){
+    document.getElementById('cPractice').textContent=fmt(_practice);
+    practiceRow.style.display='flex';
+  } else {
+    practiceRow.style.display='none';
+  }
+  document.getElementById('cMusicians').textContent=_musicians+' คน';
+  document.getElementById('cRounded').textContent=fmt(_rounded);
+  document.getElementById('cExact').textContent='ยอดจริง '+fmt(Math.round(_exact))+' → ปัดเป็น';
+  document.getElementById('cFund').textContent=fmt(_fund);
   document.getElementById('shareOverlay').classList.add('show');
 }
 
-function closeCard() {
+function closeCard(){
   document.getElementById('shareOverlay').classList.remove('show');
 }
 
-function closeOverlay(e) {
-  if (e.target === document.getElementById('shareOverlay')) closeCard();
+function overlayClick(e){
+  if(e.target===document.getElementById('shareOverlay')) closeCard();
+}
+
+function downloadCard(){
+  var card=document.getElementById('shareCard');
+  var btn=document.querySelector('.btn-download');
+  btn.textContent='⏳ กำลังสร้างรูป...';
+  btn.disabled=true;
+
+  html2canvas(card, {
+    scale: 3,
+    useCORS: true,
+    backgroundColor: '#1a1a2e',
+    logging: false
+  }).then(function(canvas){
+    var link=document.createElement('a');
+    var now=new Date();
+    link.download='tip-'+now.getDate()+'-'+(now.getMonth()+1)+'-'+(now.getFullYear()+543)+'.png';
+    link.href=canvas.toDataURL('image/png');
+    link.click();
+    btn.textContent='⬇️ บันทึกรูป';
+    btn.disabled=false;
+  }).catch(function(){
+    alert('เกิดข้อผิดพลาด ลอง screenshot แทนได้เลยครับ');
+    btn.textContent='⬇️ บันทึกรูป';
+    btn.disabled=false;
+  });
 }
 
 calc();
