@@ -30,15 +30,13 @@ h1 { font-size: 22px; font-weight: 700; margin-bottom: 1.5rem; }
 .total-row { display: flex; justify-content: space-between; align-items: baseline; }
 .total-label { font-size: 14px; color: #555; }
 .total-value { font-size: 22px; font-weight: 700; }
-.musician-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; background: #fff; border: 1px solid #e5e3dc; border-radius: 10px; padding: 12px 14px; }
-.musician-row label { font-size: 14px; color: #555; flex: 1; }
-.musician-row input { width: 80px; font-size: 16px; font-weight: 600; text-align: center; border: 1px solid #ddd; border-radius: 8px; padding: 6px 4px; font-family: inherit; background: #fafaf8; }
-.musician-row input:focus { outline: none; border-color: #888; }
-.musician-unit { font-size: 14px; color: #888; }
-
-/* GUEST TOGGLE */
+.input-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; background: #fff; border: 1px solid #e5e3dc; border-radius: 10px; padding: 12px 14px; }
+.input-row label { font-size: 14px; color: #555; flex: 1; }
+.input-row input { width: 80px; font-size: 16px; font-weight: 600; text-align: center; border: 1px solid #ddd; border-radius: 8px; padding: 6px 4px; font-family: inherit; background: #fafaf8; }
+.input-row input:focus { outline: none; border-color: #888; }
+.input-row .unit { font-size: 14px; color: #888; }
 .toggle-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; background: #fff; border: 1px solid #e5e3dc; border-radius: 10px; padding: 12px 14px; }
-.toggle-row label { font-size: 14px; color: #555; flex: 1; }
+.toggle-row label.tl { font-size: 14px; color: #555; flex: 1; }
 .switch { position: relative; width: 44px; height: 26px; flex-shrink: 0; }
 .switch input { opacity: 0; width: 0; height: 0; }
 .slider { position: absolute; inset: 0; background: #ccc; border-radius: 26px; cursor: pointer; transition: 0.25s; }
@@ -46,15 +44,19 @@ h1 { font-size: 22px; font-weight: 700; margin-bottom: 1.5rem; }
 input:checked + .slider { background: #1a7a4a; }
 input:checked + .slider:before { transform: translateX(18px); }
 
-/* GUEST SECTION */
+/* guest inputs */
 #guestSection { display: none; margin-bottom: 1rem; }
 #guestSection.show { display: block; }
-.guest-card { background: #fff8ee; border: 1px solid #f5d98a; border-radius: 14px; padding: 1.25rem; }
-.guest-card .section-title { color: #a06a00; }
+.guest-inputs { background: #fff8ee; border: 1px solid #f5d98a; border-radius: 14px; padding: 1rem 1.25rem; }
+.guest-inputs .input-row { background: #fff; border-color: #f5d98a; margin-bottom: 0; }
+.guest-inputs .input-row:first-child { margin-bottom: 10px; }
 
-/* STEP BADGES */
-.step-badge { display: inline-block; background: #1a1a1a; color: #fff; font-size: 11px; font-weight: 700; border-radius: 20px; padding: 2px 10px; margin-bottom: 8px; }
-.step-badge.gold { background: #f5a623; color: #3a2000; }
+/* step box */
+.step-box { background: #fff8ee; border: 1px solid #f5d98a; border-radius: 12px; padding: 12px 16px; margin-top: 12px; }
+.step-box-title { font-size: 12px; font-weight: 700; color: #a06a00; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+.step-row { display: flex; justify-content: space-between; font-size: 14px; color: #7a4a00; padding: 4px 0; }
+.step-row .sv { font-weight: 700; }
+.step-remain { margin-top: 8px; padding-top: 8px; border-top: 1px solid #f5d98a; display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; color: #a06a00; }
 
 .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
 .metric { background: #fff; border: 1px solid #e5e3dc; border-radius: 12px; padding: 1rem 1.1rem; }
@@ -62,20 +64,15 @@ input:checked + .slider:before { transform: translateX(18px); }
 .metric-value { font-size: 22px; font-weight: 700; }
 .metric-value.accent { color: #1a7a4a; }
 .metric-value.muted { font-size: 18px; color: #555; }
-.metric-value.gold { color: #a06a00; }
 
-.notice { background: #eaf6ef; border: 1px solid #b2dfc6; border-radius: 12px; padding: 14px 16px; font-size: 15px; color: #1a5c38; display: none; margin-bottom: 1.5rem; }
+.notice { background: #eaf6ef; border: 1px solid #b2dfc6; border-radius: 12px; padding: 14px 16px; font-size: 15px; color: #1a5c38; display: none; margin-bottom: 1.5rem; line-height: 1.7; }
 .notice strong { font-weight: 700; }
-.notice.amber { background: #fff8ee; border-color: #f5d98a; color: #7a4a00; }
-
 .btn-share { display: none; width: 100%; padding: 16px; background: #1a1a1a; color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer; margin-bottom: 2rem; }
 .btn-share:active { background: #333; }
 
 /* OVERLAY */
 #shareOverlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 100; align-items: center; justify-content: center; padding: 1rem; flex-direction: column; gap: 16px; overflow-y: auto; }
 #shareOverlay.show { display: flex; }
-
-/* SHARE CARD */
 #shareCard { width: 360px; background: #1a1a2e; border-radius: 24px; overflow: hidden; font-family: 'Sarabun', sans-serif; }
 .card-header { padding: 20px 24px 14px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); background: #16213e; }
 .card-header .emoji { font-size: 30px; margin-bottom: 4px; }
@@ -86,13 +83,10 @@ input:checked + .slider:before { transform: translateX(18px); }
 .card-row:last-child { border-bottom: none; }
 .card-row .lbl { font-size: 13px; color: rgba(255,255,255,0.5); }
 .card-row .val { font-size: 15px; font-weight: 600; color: #fff; }
-
-/* guest block on card */
-.card-guest-block { margin: 10px 24px; background: rgba(245,169,35,0.15); border: 1px solid rgba(245,169,35,0.3); border-radius: 12px; padding: 12px 16px; }
-.card-guest-block .gb-title { font-size: 12px; color: rgba(245,169,35,0.8); margin-bottom: 8px; font-weight: 600; }
-.card-guest-row { display: flex; justify-content: space-between; font-size: 13px; color: rgba(255,255,255,0.7); padding: 3px 0; }
-.card-guest-row .gv { color: #f7c948; font-weight: 600; }
-
+.card-guest-block { margin: 10px 24px; background: rgba(245,169,35,0.12); border: 1px solid rgba(245,169,35,0.3); border-radius: 12px; padding: 12px 16px; }
+.card-guest-block .gb-title { font-size: 12px; color: rgba(245,169,35,0.9); margin-bottom: 6px; font-weight: 700; text-transform: uppercase; }
+.card-guest-row { display: flex; justify-content: space-between; font-size: 13px; color: rgba(255,255,255,0.65); padding: 3px 0; }
+.card-guest-row .gv { color: #f7c948; font-weight: 700; }
 .card-highlight { margin: 10px 24px; background: linear-gradient(135deg, #f7c948, #f5a623); border-radius: 16px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
 .card-highlight .hl-label { font-size: 14px; font-weight: 700; color: #7a4a00; }
 .card-highlight .hl-amount { font-size: 32px; font-weight: 700; color: #3a2000; }
@@ -101,12 +95,10 @@ input:checked + .slider:before { transform: translateX(18px); }
 .card-fund .f-label { font-size: 13px; color: rgba(255,255,255,0.55); }
 .card-fund .f-val { font-size: 20px; font-weight: 700; color: #7ef5c0; }
 .card-footer { background: rgba(0,0,0,0.25); padding: 10px 24px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.3); }
-
 .overlay-btns { display: flex; gap: 10px; width: 360px; }
 .overlay-btns button { flex: 1; padding: 14px; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; }
 .btn-close-overlay { background: rgba(255,255,255,0.15); color: #fff; }
 .btn-download { background: #f7c948; color: #3a2000; }
-
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { opacity: 1; }
 </style>
@@ -117,36 +109,59 @@ input[type=number]::-webkit-outer-spin-button { opacity: 1; }
 
   <p class="section-title">ใส่จำนวนแบงก์</p>
   <div class="bill-grid">
-    <div class="bill-row">
-      <div class="bill-denom">฿1,000 <span>บาท</span></div>
-      <input type="number" min="0" value="0" id="b1000" oninput="calc()">
-      <div class="bill-total" id="t1000">฿0</div>
+    <div class="bill-row"><div class="bill-denom">฿1,000 <span>บาท</span></div><input type="number" min="0" value="0" id="b1000" oninput="calc()"><div class="bill-total" id="t1000">฿0</div></div>
+    <div class="bill-row"><div class="bill-denom">฿500 <span>บาท</span></div><input type="number" min="0" value="0" id="b500" oninput="calc()"><div class="bill-total" id="t500">฿0</div></div>
+    <div class="bill-row"><div class="bill-denom">฿100 <span>บาท</span></div><input type="number" min="0" value="0" id="b100" oninput="calc()"><div class="bill-total" id="t100">฿0</div></div>
+    <div class="bill-row"><div class="bill-denom">฿50 <span>บาท</span></div><input type="number" min="0" value="0" id="b50" oninput="calc()"><div class="bill-total" id="t50">฿0</div></div>
+    <div class="bill-row full-span"><div class="bill-denom">฿20 <span>บาท</span></div><input type="number" min="0" value="0" id="b20" oninput="calc()"><div class="bill-total" id="t20">฿0</div></div>
+  </div>
+
+  <p class="section-title">การหักและจำนวนคน</p>
+
+  <!-- GUEST TOGGLE -->
+  <div class="toggle-row">
+    <label class="tl" for="guestToggle">🎤 มีนักร้องรับเชิญ</label>
+    <label class="switch"><input type="checkbox" id="guestToggle" onchange="toggleGuest()"><span class="slider"></span></label>
+  </div>
+
+  <!-- GUEST SECTION -->
+  <div id="guestSection">
+    <div class="guest-inputs">
+      <p class="section-title" style="color:#a06a00; margin-bottom:10px;">รอบที่ 1 — แบ่งให้ทุกคนก่อน</p>
+      <div class="input-row" style="margin-bottom:10px;">
+        <label>👥 นักดนตรีในวง</label>
+        <input type="number" min="1" value="5" id="bandCount" oninput="calc()">
+        <span class="unit">คน</span>
+      </div>
+      <div class="input-row" style="margin-bottom:0;">
+        <label>🎤 นักร้องรับเชิญ</label>
+        <input type="number" min="1" value="1" id="guestCount" oninput="calc()">
+        <span class="unit">คน</span>
+      </div>
+      <!-- step box -->
+      <div class="step-box" id="guestStepBox" style="display:none;">
+        <div class="step-box-title">📊 รอบที่ 1</div>
+        <div class="step-row"><span>ทิปรวม ÷ <span id="sTotalPeople">–</span> คน</span><span class="sv" id="sPerPerson">–</span></div>
+        <div class="step-row"><span>นักร้องรับเชิญ <span id="sGuestN">–</span> คน × <span id="sPerPerson2">–</span></span><span class="sv" id="sGuestTotal">–</span></div>
+        <div class="step-remain">
+          <span>🎸 เหลือเข้าวง</span>
+          <span id="sRemain">–</span>
+        </div>
+      </div>
     </div>
-    <div class="bill-row">
-      <div class="bill-denom">฿500 <span>บาท</span></div>
-      <input type="number" min="0" value="0" id="b500" oninput="calc()">
-      <div class="bill-total" id="t500">฿0</div>
-    </div>
-    <div class="bill-row">
-      <div class="bill-denom">฿100 <span>บาท</span></div>
-      <input type="number" min="0" value="0" id="b100" oninput="calc()">
-      <div class="bill-total" id="t100">฿0</div>
-    </div>
-    <div class="bill-row">
-      <div class="bill-denom">฿50 <span>บาท</span></div>
-      <input type="number" min="0" value="0" id="b50" oninput="calc()">
-      <div class="bill-total" id="t50">฿0</div>
-    </div>
-    <div class="bill-row full-span">
-      <div class="bill-denom">฿20 <span>บาท</span></div>
-      <input type="number" min="0" value="0" id="b20" oninput="calc()">
-      <div class="bill-total" id="t20">฿0</div>
-    </div>
+    <div style="height:1rem;"></div>
+  </div>
+
+  <!-- NORMAL / BAND MUSICIAN COUNT -->
+  <div id="normalMusician" class="input-row">
+    <label for="numMusicians">👥 จำนวนนักดนตรี</label>
+    <input type="number" min="1" value="4" id="numMusicians" oninput="calc()">
+    <span class="unit">คน</span>
   </div>
 
   <!-- DEDUCT CARD -->
-  <div class="card">
-    <div class="total-row" style="margin-bottom:14px">
+  <div class="card" style="margin-top:1rem;">
+    <div class="total-row" style="margin-bottom:14px;">
       <span class="total-label">รวมทิปทั้งหมด</span>
       <span class="total-value" id="grandTotal">฿0</span>
     </div>
@@ -161,92 +176,20 @@ input[type=number]::-webkit-outer-spin-button { opacity: 1; }
     </div>
     <hr class="divider">
     <div class="total-row">
-      <span class="total-label">ยอดคงเหลือก่อนหาร</span>
+      <span class="total-label" id="poolLabel">ยอดคงเหลือก่อนหาร</span>
       <span class="total-value" id="afterDeduct">฿0</span>
     </div>
   </div>
 
-  <!-- GUEST TOGGLE -->
-  <div class="toggle-row">
-    <label for="guestToggle">🎤 มีนักร้องรับเชิญ</label>
-    <label class="switch">
-      <input type="checkbox" id="guestToggle" onchange="toggleGuest()">
-      <span class="slider"></span>
-    </label>
-  </div>
-
-  <!-- GUEST SECTION -->
-  <div id="guestSection">
-    <div class="guest-card">
-      <p class="section-title">รอบที่ 1 — แบ่งให้ทุกคนรวมนักร้องรับเชิญ</p>
-      <div class="musician-row" style="background:#fff8ee; border-color:#f5d98a; margin-bottom:10px;">
-        <label>👥 นักดนตรีในวง</label>
-        <input type="number" min="1" value="4" id="bandCount" oninput="calc()">
-        <span class="musician-unit">คน</span>
-      </div>
-      <div class="musician-row" style="background:#fff8ee; border-color:#f5d98a; margin-bottom:0;">
-        <label>🎤 นักร้องรับเชิญ</label>
-        <input type="number" min="1" value="1" id="guestCount" oninput="calc()">
-        <span class="musician-unit">คน</span>
-      </div>
-      <hr class="divider" style="border-color:#f5d98a; margin:12px 0;">
-      <div class="total-row">
-        <span class="total-label" style="color:#a06a00;">รวมทั้งหมด</span>
-        <span style="font-size:16px; font-weight:700; color:#a06a00;" id="totalPeopleGuest">5 คน</span>
-      </div>
-
-      <!-- Round 1 result -->
-      <div id="guestResult" style="display:none; margin-top:14px;">
-        <hr class="divider" style="border-color:#f5d98a;">
-        <div class="result-grid" style="margin-bottom:0;">
-          <div class="metric" style="background:#fff8ee; border-color:#f5d98a;">
-            <div class="metric-label">ยอดต่อคน (จริง)</div>
-            <div class="metric-value muted" id="guestExact">–</div>
-          </div>
-          <div class="metric" style="background:#fff8ee; border-color:#f5d98a;">
-            <div class="metric-label">จ่ายนักร้องรับเชิญ</div>
-            <div class="metric-value gold" id="guestPay">–</div>
-          </div>
-        </div>
-        <div style="margin-top:10px; background:#fff3d6; border-radius:10px; padding:12px 14px; font-size:14px; color:#7a4a00;">
-          💡 เหลือเข้าวง <strong id="remainForBand">–</strong> (นำไปคำนวณรอบที่ 2 ให้อัตโนมัติแล้ว)
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- BAND MUSICIANS (normal mode) -->
-  <div id="normalMusician" class="musician-row" style="margin-bottom:1rem;">
-    <label for="numMusicians">👥 จำนวนนักดนตรี</label>
-    <input type="number" min="1" value="4" id="numMusicians" oninput="calc()">
-    <span class="musician-unit">คน</span>
-  </div>
-
-  <!-- RESULTS -->
-  <p class="section-title" id="resultTitle">ผลการคำนวณ</p>
+  <p class="section-title" style="margin-top:1rem;" id="resultTitle">ผลการคำนวณ</p>
   <div class="result-grid">
-    <div class="metric">
-      <div class="metric-label">ยอดต่อคน (จริง)</div>
-      <div class="metric-value muted" id="perPersonExact">–</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">ยอดจ่ายจริง (ปัดลง)</div>
-      <div class="metric-value accent" id="perPersonRounded">–</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">รวมจ่ายนักดนตรีทั้งหมด</div>
-      <div class="metric-value" id="totalPaid">–</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">เข้ากองทุนรวม</div>
-      <div class="metric-value" id="fundTotal">–</div>
-    </div>
+    <div class="metric"><div class="metric-label">ยอดต่อคน (จริง)</div><div class="metric-value muted" id="perPersonExact">–</div></div>
+    <div class="metric"><div class="metric-label">ยอดจ่ายจริง (ปัดลง)</div><div class="metric-value accent" id="perPersonRounded">–</div></div>
+    <div class="metric"><div class="metric-label">รวมจ่ายนักดนตรีทั้งหมด</div><div class="metric-value" id="totalPaid">–</div></div>
+    <div class="metric"><div class="metric-label">เข้ากองทุนรวม</div><div class="metric-value" id="fundTotal">–</div></div>
   </div>
 
-  <div class="notice" id="summaryNotice">
-    ✅ <span id="summaryText"></span>
-  </div>
-
+  <div class="notice" id="summaryNotice">✅ <span id="summaryText"></span></div>
   <button class="btn-share" id="btnShare" onclick="showCard()">📤 สรุปผลเป็นรูป</button>
 </div>
 
@@ -259,25 +202,14 @@ input[type=number]::-webkit-outer-spin-button { opacity: 1; }
       <div class="subtitle" id="cardDate"></div>
     </div>
     <div class="card-body">
-      <div class="card-row">
-        <span class="lbl">ทิปรวมทั้งหมด</span>
-        <span class="val" id="cTotal">–</span>
-      </div>
-      <div class="card-row" id="cPracticeRow">
-        <span class="lbl">หักค่าซ้อม</span>
-        <span class="val" id="cPractice">–</span>
-      </div>
+      <div class="card-row"><span class="lbl">ทิปรวมทั้งหมด</span><span class="val" id="cTotal">–</span></div>
+      <div class="card-row" id="cPracticeRow"><span class="lbl">หักค่าซ้อม</span><span class="val" id="cPractice">–</span></div>
     </div>
-
-    <!-- guest block on card -->
     <div class="card-guest-block" id="cGuestBlock" style="display:none;">
-      <div class="gb-title">🎤 รอบที่ 1 — นักร้องรับเชิญ</div>
-      <div class="card-guest-row">
-        <span>จ่ายนักร้องรับเชิญ (<span id="cGuestCount">–</span> คน) คนละ</span>
-        <span class="gv" id="cGuestPayEach">–</span>
-      </div>
+      <div class="gb-title">🎤 นักร้องรับเชิญ</div>
+      <div class="card-guest-row"><span>หาร <span id="cTotalPeople">–</span> คน → คนละ</span><span class="gv" id="cGuestEach">–</span></div>
+      <div class="card-guest-row"><span>จ่ายนักร้อง <span id="cGuestN">–</span> คน</span><span class="gv" id="cGuestTotalPay">–</span></div>
     </div>
-
     <div class="card-highlight">
       <div>
         <div class="hl-label">💰 นักดนตรีในวงได้</div>
@@ -285,10 +217,7 @@ input[type=number]::-webkit-outer-spin-button { opacity: 1; }
       </div>
       <div class="hl-amount" id="cRounded">–</div>
     </div>
-    <div class="card-fund">
-      <span class="f-label">🏦 เข้ากองทุน</span>
-      <span class="f-val" id="cFund">–</span>
-    </div>
+    <div class="card-fund"><span class="f-label">🏦 เข้ากองทุน</span><span class="f-val" id="cFund">–</span></div>
     <div class="card-footer">🎵 คิดทิปนักดนตรีในวง</div>
   </div>
   <div class="overlay-btns">
@@ -299,17 +228,18 @@ input[type=number]::-webkit-outer-spin-button { opacity: 1; }
 
 <script>
 var _rounded=0,_fund=0,_exact=0,_total=0,_practice=0,_musicians=0;
-var _guestMode=false,_guestPay=0,_guestCount=0,_remainForBand=0;
+var _guestMode=false,_guestEach=0,_guestEachExact=0,_guestCount=0,_guestTotalPay=0,_totalPeople=0;
 
 function v(id){ return parseFloat(document.getElementById(id).value)||0; }
 function fmt(n){ return '฿'+Math.round(n).toLocaleString('th-TH'); }
 function roundDown20(n){ if(n<=0) return 0; return Math.floor(n/20)*20; }
 
 function toggleGuest(){
-  _guestMode = document.getElementById('guestToggle').checked;
-  document.getElementById('guestSection').classList.toggle('show', _guestMode);
-  document.getElementById('normalMusician').style.display = _guestMode ? 'none' : 'flex';
-  document.getElementById('resultTitle').textContent = _guestMode ? 'รอบที่ 2 — แบ่งในวง' : 'ผลการคำนวณ';
+  _guestMode=document.getElementById('guestToggle').checked;
+  document.getElementById('guestSection').classList.toggle('show',_guestMode);
+  document.getElementById('normalMusician').style.display=_guestMode?'none':'flex';
+  document.getElementById('resultTitle').textContent=_guestMode?'รอบที่ 2 — แบ่งในวง':'ผลการคำนวณ';
+  document.getElementById('poolLabel').textContent=_guestMode?'เหลือเข้าวง (หลังจ่ายนักร้อง - หักกองทุน/ซ้อม)':'ยอดคงเหลือก่อนหาร';
   calc();
 }
 
@@ -322,50 +252,57 @@ function calc(){
   document.getElementById('t20').textContent=fmt(b20*20);
 
   var total=b1000*1000+b500*500+b100*100+b50*50+b20*20;
+  _total=total;
   document.getElementById('grandTotal').textContent=fmt(total);
 
-  var fundFixed=100, practice=v('practiceDeduct');
-  var after=total-fundFixed-practice;
-  document.getElementById('afterDeduct').textContent=fmt(Math.max(0,after));
+  var fundFixed=100;
+  var practice=v('practiceDeduct');
+  _practice=practice;
 
-  _total=total; _practice=practice;
+  var bandPool; // pool that goes into band system
 
-  var bandPool = after; // default: full pool goes to band
-
-  // === GUEST MODE: Round 1 ===
   if(_guestMode){
     var bandCount=Math.max(1,Math.round(v('bandCount')));
     var guestCount=Math.max(1,Math.round(v('guestCount')));
     var totalPeople=bandCount+guestCount;
-    document.getElementById('totalPeopleGuest').textContent=totalPeople+' คน';
-
-    if(after>0){
-      var exactPerPerson=after/totalPeople;
-      var roundedPerPerson=roundDown20(exactPerPerson);
-      var guestTotal=roundedPerPerson*guestCount;
-      var remainForBand=after-guestTotal; // what's left for band (round 2)
-
-      _guestPay=roundedPerPerson;
-      _guestCount=guestCount;
-      _remainForBand=remainForBand;
-
-      document.getElementById('guestResult').style.display='block';
-      document.getElementById('guestExact').textContent=fmt(exactPerPerson);
-      document.getElementById('guestPay').textContent=fmt(roundedPerPerson)+' / คน';
-      document.getElementById('remainForBand').textContent=fmt(remainForBand);
-
-      bandPool=remainForBand;
-    } else {
-      document.getElementById('guestResult').style.display='none';
-    }
-
+    _guestCount=guestCount;
+    _totalPeople=totalPeople;
     _musicians=bandCount;
+
+    if(total>0){
+      // Round 1: split total by all people (no deductions yet), exact division
+      var perPersonExact=total/totalPeople;
+      var perPersonRounded=roundDown20(perPersonExact); // ปัดลงทวีคูณ 20
+      var guestTotalPay=perPersonRounded*guestCount;
+      var remainForBand=total-guestTotalPay; // เหลือเข้าวง
+
+      _guestEach=perPersonRounded;
+      _guestEachExact=perPersonExact;
+      _guestTotalPay=guestTotalPay;
+
+      // show step box
+      document.getElementById('guestStepBox').style.display='block';
+      document.getElementById('sTotalPeople').textContent=totalPeople;
+      document.getElementById('sPerPerson').textContent=fmt(perPersonExact)+' → ปัดเป็น '+fmt(perPersonRounded);
+      document.getElementById('sGuestN').textContent=guestCount;
+      document.getElementById('sPerPerson2').textContent=fmt(perPersonRounded);
+      document.getElementById('sGuestTotal').textContent=fmt(guestTotalPay);
+      document.getElementById('sRemain').textContent=fmt(remainForBand);
+
+      // Round 2: apply deductions to band remainder
+      bandPool=remainForBand-fundFixed-practice;
+    } else {
+      document.getElementById('guestStepBox').style.display='none';
+      bandPool=0;
+    }
+    document.getElementById('afterDeduct').textContent=fmt(Math.max(0,bandPool));
   } else {
     _musicians=Math.max(1,Math.round(v('numMusicians')));
+    bandPool=total-fundFixed-practice;
+    document.getElementById('afterDeduct').textContent=fmt(Math.max(0,bandPool));
   }
 
-  // === Round 2 (or normal): split bandPool among band ===
-  if(bandPool<=0 || after<=0){
+  if(bandPool<=0||total<=0){
     ['perPersonExact','perPersonRounded','totalPaid','fundTotal'].forEach(function(id){
       document.getElementById(id).textContent='–';
     });
@@ -374,26 +311,28 @@ function calc(){
     return;
   }
 
-  var exact2=bandPool/_musicians;
-  var rounded2=roundDown20(exact2);
-  var totalPaid2=rounded2*_musicians;
-  var remainder2=bandPool-totalPaid2;
-  var fundTotal2=fundFixed+remainder2;
+  var exact=bandPool/_musicians;
+  var rounded=roundDown20(exact);
+  var totalPaid=rounded*_musicians;
+  var remainder=bandPool-totalPaid;
+  var fundTotal=fundFixed+remainder;
 
-  _rounded=rounded2; _fund=fundTotal2; _exact=exact2;
+  _rounded=rounded; _fund=fundTotal; _exact=exact;
 
-  document.getElementById('perPersonExact').textContent=fmt(exact2);
-  document.getElementById('perPersonRounded').textContent=fmt(rounded2);
-  document.getElementById('totalPaid').textContent=fmt(totalPaid2);
-  document.getElementById('fundTotal').textContent=fmt(fundTotal2);
+  document.getElementById('perPersonExact').textContent=fmt(exact);
+  document.getElementById('perPersonRounded').textContent=fmt(rounded);
+  document.getElementById('totalPaid').textContent=fmt(totalPaid);
+  document.getElementById('fundTotal').textContent=fmt(fundTotal);
 
   document.getElementById('summaryNotice').style.display='block';
-  document.getElementById('summaryNotice').className='notice'+(_guestMode?' amber':'');
-
-  var prefix = _guestMode ? '🎤 นักร้องรับเชิญ '+_guestCount+' คน ได้คนละ <strong>'+fmt(_guestPay)+'</strong><br>🎸 ' : '';
-  document.getElementById('summaryText').innerHTML=
-    prefix+'จ่ายนักดนตรีในวง <strong>'+_musicians+' คน</strong> คนละ <strong>'+fmt(rounded2)+'</strong> &nbsp;|&nbsp; เหลือเข้ากองทุน <strong>'+fmt(fundTotal2)+'</strong>';
-
+  var txt='';
+  if(_guestMode){
+    txt='🎤 นักร้องรับเชิญ <strong>'+_guestCount+' คน</strong> ได้คนละ <strong>'+fmt(_guestEach)+'</strong><br>'
+      +'🎸 นักดนตรีในวง <strong>'+_musicians+' คน</strong> ได้คนละ <strong>'+fmt(rounded)+'</strong> &nbsp;|&nbsp; เข้ากองทุน <strong>'+fmt(fundTotal)+'</strong>';
+  } else {
+    txt='จ่ายนักดนตรี <strong>'+_musicians+' คน</strong> คนละ <strong>'+fmt(rounded)+'</strong> &nbsp;|&nbsp; เข้ากองทุน <strong>'+fmt(fundTotal)+'</strong>';
+  }
+  document.getElementById('summaryText').innerHTML=txt;
   document.getElementById('btnShare').style.display='block';
 }
 
@@ -403,18 +342,16 @@ function showCard(){
   document.getElementById('cardDate').textContent='วัน'+days[now.getDay()]+' '+now.getDate()+'/'+(now.getMonth()+1)+'/'+(now.getFullYear()+543);
   document.getElementById('cTotal').textContent=fmt(_total);
   var pr=document.getElementById('cPracticeRow');
-  if(_practice>0){
-    document.getElementById('cPractice').textContent=fmt(_practice);
-    pr.style.display='flex';
-  } else { pr.style.display='none'; }
-
+  if(_practice>0){ document.getElementById('cPractice').textContent=fmt(_practice); pr.style.display='flex'; }
+  else { pr.style.display='none'; }
   var gb=document.getElementById('cGuestBlock');
-  if(_guestMode && _guestPay>0){
-    document.getElementById('cGuestCount').textContent=_guestCount;
-    document.getElementById('cGuestPayEach').textContent=fmt(_guestPay);
+  if(_guestMode&&_guestEach>0){
+    document.getElementById('cTotalPeople').textContent=_totalPeople;
+    document.getElementById('cGuestEach').textContent=fmt(_guestEachExact)+' → '+fmt(_guestEach);
+    document.getElementById('cGuestN').textContent=_guestCount;
+    document.getElementById('cGuestTotalPay').textContent=fmt(_guestTotalPay);
     gb.style.display='block';
   } else { gb.style.display='none'; }
-
   document.getElementById('cRounded').textContent=fmt(_rounded);
   document.getElementById('cExact').textContent='ยอดจริง '+fmt(_exact)+' → ปัดเป็น';
   document.getElementById('cFund').textContent=fmt(_fund);
@@ -427,20 +364,17 @@ function overlayClick(e){ if(e.target===document.getElementById('shareOverlay'))
 function downloadCard(){
   var card=document.getElementById('shareCard');
   var btn=document.querySelector('.btn-download');
-  btn.textContent='⏳ กำลังสร้างรูป...';
-  btn.disabled=true;
+  btn.textContent='⏳ กำลังสร้างรูป...'; btn.disabled=true;
   html2canvas(card,{scale:3,useCORS:true,backgroundColor:'#1a1a2e',logging:false}).then(function(canvas){
     var link=document.createElement('a');
     var now=new Date();
     link.download='tip-'+now.getDate()+'-'+(now.getMonth()+1)+'-'+(now.getFullYear()+543)+'.png';
     link.href=canvas.toDataURL('image/png');
     link.click();
-    btn.textContent='⬇️ บันทึกรูป';
-    btn.disabled=false;
+    btn.textContent='⬇️ บันทึกรูป'; btn.disabled=false;
   }).catch(function(){
     alert('เกิดข้อผิดพลาด ลอง screenshot แทนได้เลยครับ');
-    btn.textContent='⬇️ บันทึกรูป';
-    btn.disabled=false;
+    btn.textContent='⬇️ บันทึกรูป'; btn.disabled=false;
   });
 }
 
