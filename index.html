@@ -10,78 +10,102 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Sarabun', sans-serif; background: #f5f4f0; color: #1a1a1a; min-height: 100vh; padding: 2rem 1rem; }
 .container { max-width: 600px; margin: 0 auto; }
-h1 { font-size: 22px; font-weight: 700; margin-bottom: 1.5rem; color: #1a1a1a; }
+h1 { font-size: 22px; font-weight: 700; margin-bottom: 1.5rem; }
 .section-title { font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
 .bill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
 .bill-row { background: #fff; border: 1px solid #e5e3dc; border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
-.bill-denom { font-size: 15px; font-weight: 600; color: #1a1a1a; min-width: 72px; }
+.bill-denom { font-size: 15px; font-weight: 600; min-width: 72px; }
 .bill-denom span { font-size: 12px; color: #999; font-weight: 400; }
 .bill-row input[type=number] { width: 64px; text-align: center; font-size: 15px; border: 1px solid #ddd; border-radius: 8px; padding: 6px 4px; font-family: inherit; background: #fafaf8; }
 .bill-row input[type=number]:focus { outline: none; border-color: #888; }
 .bill-total { font-size: 13px; color: #666; margin-left: auto; min-width: 56px; text-align: right; }
 .full-span { grid-column: 1 / -1; }
-.summary-card { background: #fff; border: 1px solid #e5e3dc; border-radius: 14px; padding: 1.25rem; margin-bottom: 1rem; }
+.card { background: #fff; border: 1px solid #e5e3dc; border-radius: 14px; padding: 1.25rem; margin-bottom: 1rem; }
 .deduct-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .deduct-label { font-size: 14px; color: #555; flex: 1; }
-.deduct-value { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+.deduct-value { font-size: 14px; font-weight: 600; }
 .deduct-row input[type=number] { width: 100px; text-align: right; font-size: 14px; border: 1px solid #ddd; border-radius: 8px; padding: 6px 10px; font-family: inherit; background: #fafaf8; }
 .deduct-row input[type=number]:focus { outline: none; border-color: #888; }
 .divider { border: none; border-top: 1px solid #eeecea; margin: 12px 0; }
 .total-row { display: flex; justify-content: space-between; align-items: baseline; }
 .total-label { font-size: 14px; color: #555; }
-.total-value { font-size: 22px; font-weight: 700; color: #1a1a1a; }
-.musician-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; background: #fff; border: 1px solid #e5e3dc; border-radius: 10px; padding: 12px 14px; }
+.total-value { font-size: 22px; font-weight: 700; }
+.musician-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; background: #fff; border: 1px solid #e5e3dc; border-radius: 10px; padding: 12px 14px; }
 .musician-row label { font-size: 14px; color: #555; flex: 1; }
 .musician-row input { width: 80px; font-size: 16px; font-weight: 600; text-align: center; border: 1px solid #ddd; border-radius: 8px; padding: 6px 4px; font-family: inherit; background: #fafaf8; }
 .musician-row input:focus { outline: none; border-color: #888; }
 .musician-unit { font-size: 14px; color: #888; }
+
+/* GUEST TOGGLE */
+.toggle-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; background: #fff; border: 1px solid #e5e3dc; border-radius: 10px; padding: 12px 14px; }
+.toggle-row label { font-size: 14px; color: #555; flex: 1; }
+.switch { position: relative; width: 44px; height: 26px; flex-shrink: 0; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; inset: 0; background: #ccc; border-radius: 26px; cursor: pointer; transition: 0.25s; }
+.slider:before { content: ''; position: absolute; width: 20px; height: 20px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.25s; }
+input:checked + .slider { background: #1a7a4a; }
+input:checked + .slider:before { transform: translateX(18px); }
+
+/* GUEST SECTION */
+#guestSection { display: none; margin-bottom: 1rem; }
+#guestSection.show { display: block; }
+.guest-card { background: #fff8ee; border: 1px solid #f5d98a; border-radius: 14px; padding: 1.25rem; }
+.guest-card .section-title { color: #a06a00; }
+
+/* STEP BADGES */
+.step-badge { display: inline-block; background: #1a1a1a; color: #fff; font-size: 11px; font-weight: 700; border-radius: 20px; padding: 2px 10px; margin-bottom: 8px; }
+.step-badge.gold { background: #f5a623; color: #3a2000; }
+
 .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
 .metric { background: #fff; border: 1px solid #e5e3dc; border-radius: 12px; padding: 1rem 1.1rem; }
 .metric-label { font-size: 12px; color: #888; margin-bottom: 6px; }
-.metric-value { font-size: 22px; font-weight: 700; color: #1a1a1a; }
+.metric-value { font-size: 22px; font-weight: 700; }
 .metric-value.accent { color: #1a7a4a; }
 .metric-value.muted { font-size: 18px; color: #555; }
+.metric-value.gold { color: #a06a00; }
+
 .notice { background: #eaf6ef; border: 1px solid #b2dfc6; border-radius: 12px; padding: 14px 16px; font-size: 15px; color: #1a5c38; display: none; margin-bottom: 1.5rem; }
 .notice strong { font-weight: 700; }
+.notice.amber { background: #fff8ee; border-color: #f5d98a; color: #7a4a00; }
+
 .btn-share { display: none; width: 100%; padding: 16px; background: #1a1a1a; color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer; margin-bottom: 2rem; }
 .btn-share:active { background: #333; }
 
 /* OVERLAY */
-#shareOverlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 100; align-items: center; justify-content: center; padding: 1rem; flex-direction: column; gap: 16px; }
+#shareOverlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 100; align-items: center; justify-content: center; padding: 1rem; flex-direction: column; gap: 16px; overflow-y: auto; }
 #shareOverlay.show { display: flex; }
 
 /* SHARE CARD */
-#shareCard {
-  width: 360px;
-  background: #1a1a2e;
-  border-radius: 24px;
-  overflow: hidden;
-  font-family: 'Sarabun', sans-serif;
-}
-.card-header { padding: 24px 24px 16px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); background: #16213e; }
-.card-header .emoji { font-size: 32px; margin-bottom: 6px; }
+#shareCard { width: 360px; background: #1a1a2e; border-radius: 24px; overflow: hidden; font-family: 'Sarabun', sans-serif; }
+.card-header { padding: 20px 24px 14px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); background: #16213e; }
+.card-header .emoji { font-size: 30px; margin-bottom: 4px; }
 .card-header h2 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 2px; }
 .card-header .subtitle { font-size: 13px; color: rgba(255,255,255,0.45); }
-.card-body { padding: 16px 24px 4px; }
-.card-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.card-body { padding: 14px 24px 4px; }
+.card-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
 .card-row:last-child { border-bottom: none; }
 .card-row .lbl { font-size: 13px; color: rgba(255,255,255,0.5); }
 .card-row .val { font-size: 15px; font-weight: 600; color: #fff; }
-.card-highlight { margin: 12px 24px; background: linear-gradient(135deg, #f7c948, #f5a623); border-radius: 16px; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; }
+
+/* guest block on card */
+.card-guest-block { margin: 10px 24px; background: rgba(245,169,35,0.15); border: 1px solid rgba(245,169,35,0.3); border-radius: 12px; padding: 12px 16px; }
+.card-guest-block .gb-title { font-size: 12px; color: rgba(245,169,35,0.8); margin-bottom: 8px; font-weight: 600; }
+.card-guest-row { display: flex; justify-content: space-between; font-size: 13px; color: rgba(255,255,255,0.7); padding: 3px 0; }
+.card-guest-row .gv { color: #f7c948; font-weight: 600; }
+
+.card-highlight { margin: 10px 24px; background: linear-gradient(135deg, #f7c948, #f5a623); border-radius: 16px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
 .card-highlight .hl-label { font-size: 14px; font-weight: 700; color: #7a4a00; }
-.card-highlight .hl-amount { font-size: 34px; font-weight: 700; color: #3a2000; }
+.card-highlight .hl-amount { font-size: 32px; font-weight: 700; color: #3a2000; }
 .card-highlight .hl-sub { font-size: 11px; color: rgba(58,32,0,0.65); margin-top: 2px; }
-.card-fund { margin: 0 24px 16px; background: rgba(255,255,255,0.08); border-radius: 12px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; }
+.card-fund { margin: 0 24px 14px; background: rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; }
 .card-fund .f-label { font-size: 13px; color: rgba(255,255,255,0.55); }
 .card-fund .f-val { font-size: 20px; font-weight: 700; color: #7ef5c0; }
-.card-footer { background: rgba(0,0,0,0.25); padding: 12px 24px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.3); }
+.card-footer { background: rgba(0,0,0,0.25); padding: 10px 24px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.3); }
 
-/* BUTTONS BELOW CARD */
 .overlay-btns { display: flex; gap: 10px; width: 360px; }
 .overlay-btns button { flex: 1; padding: 14px; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; }
 .btn-close-overlay { background: rgba(255,255,255,0.15); color: #fff; }
 .btn-download { background: #f7c948; color: #3a2000; }
-.btn-download:active { opacity: 0.85; }
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { opacity: 1; }
@@ -120,7 +144,8 @@ input[type=number]::-webkit-outer-spin-button { opacity: 1; }
     </div>
   </div>
 
-  <div class="summary-card">
+  <!-- DEDUCT CARD -->
+  <div class="card">
     <div class="total-row" style="margin-bottom:14px">
       <span class="total-label">รวมทิปทั้งหมด</span>
       <span class="total-value" id="grandTotal">฿0</span>
@@ -141,13 +166,64 @@ input[type=number]::-webkit-outer-spin-button { opacity: 1; }
     </div>
   </div>
 
-  <div class="musician-row">
+  <!-- GUEST TOGGLE -->
+  <div class="toggle-row">
+    <label for="guestToggle">🎤 มีนักร้องรับเชิญ</label>
+    <label class="switch">
+      <input type="checkbox" id="guestToggle" onchange="toggleGuest()">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- GUEST SECTION -->
+  <div id="guestSection">
+    <div class="guest-card">
+      <p class="section-title">รอบที่ 1 — แบ่งให้ทุกคนรวมนักร้องรับเชิญ</p>
+      <div class="musician-row" style="background:#fff8ee; border-color:#f5d98a; margin-bottom:10px;">
+        <label>👥 นักดนตรีในวง</label>
+        <input type="number" min="1" value="4" id="bandCount" oninput="calc()">
+        <span class="musician-unit">คน</span>
+      </div>
+      <div class="musician-row" style="background:#fff8ee; border-color:#f5d98a; margin-bottom:0;">
+        <label>🎤 นักร้องรับเชิญ</label>
+        <input type="number" min="1" value="1" id="guestCount" oninput="calc()">
+        <span class="musician-unit">คน</span>
+      </div>
+      <hr class="divider" style="border-color:#f5d98a; margin:12px 0;">
+      <div class="total-row">
+        <span class="total-label" style="color:#a06a00;">รวมทั้งหมด</span>
+        <span style="font-size:16px; font-weight:700; color:#a06a00;" id="totalPeopleGuest">5 คน</span>
+      </div>
+
+      <!-- Round 1 result -->
+      <div id="guestResult" style="display:none; margin-top:14px;">
+        <hr class="divider" style="border-color:#f5d98a;">
+        <div class="result-grid" style="margin-bottom:0;">
+          <div class="metric" style="background:#fff8ee; border-color:#f5d98a;">
+            <div class="metric-label">ยอดต่อคน (จริง)</div>
+            <div class="metric-value muted" id="guestExact">–</div>
+          </div>
+          <div class="metric" style="background:#fff8ee; border-color:#f5d98a;">
+            <div class="metric-label">จ่ายนักร้องรับเชิญ</div>
+            <div class="metric-value gold" id="guestPay">–</div>
+          </div>
+        </div>
+        <div style="margin-top:10px; background:#fff3d6; border-radius:10px; padding:12px 14px; font-size:14px; color:#7a4a00;">
+          💡 เหลือเข้าวง <strong id="remainForBand">–</strong> (นำไปคำนวณรอบที่ 2 ให้อัตโนมัติแล้ว)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BAND MUSICIANS (normal mode) -->
+  <div id="normalMusician" class="musician-row" style="margin-bottom:1rem;">
     <label for="numMusicians">👥 จำนวนนักดนตรี</label>
     <input type="number" min="1" value="4" id="numMusicians" oninput="calc()">
     <span class="musician-unit">คน</span>
   </div>
 
-  <p class="section-title">ผลการคำนวณ</p>
+  <!-- RESULTS -->
+  <p class="section-title" id="resultTitle">ผลการคำนวณ</p>
   <div class="result-grid">
     <div class="metric">
       <div class="metric-label">ยอดต่อคน (จริง)</div>
@@ -191,14 +267,20 @@ input[type=number]::-webkit-outer-spin-button { opacity: 1; }
         <span class="lbl">หักค่าซ้อม</span>
         <span class="val" id="cPractice">–</span>
       </div>
-      <div class="card-row">
-        <span class="lbl">จำนวนนักดนตรี</span>
-        <span class="val" id="cMusicians">–</span>
+    </div>
+
+    <!-- guest block on card -->
+    <div class="card-guest-block" id="cGuestBlock" style="display:none;">
+      <div class="gb-title">🎤 รอบที่ 1 — นักร้องรับเชิญ</div>
+      <div class="card-guest-row">
+        <span>จ่ายนักร้องรับเชิญ (<span id="cGuestCount">–</span> คน) คนละ</span>
+        <span class="gv" id="cGuestPayEach">–</span>
       </div>
     </div>
+
     <div class="card-highlight">
       <div>
-        <div class="hl-label">💰 แต่ละคนได้</div>
+        <div class="hl-label">💰 นักดนตรีในวงได้</div>
         <div class="hl-sub" id="cExact"></div>
       </div>
       <div class="hl-amount" id="cRounded">–</div>
@@ -217,10 +299,19 @@ input[type=number]::-webkit-outer-spin-button { opacity: 1; }
 
 <script>
 var _rounded=0,_fund=0,_exact=0,_total=0,_practice=0,_musicians=0;
+var _guestMode=false,_guestPay=0,_guestCount=0,_remainForBand=0;
 
 function v(id){ return parseFloat(document.getElementById(id).value)||0; }
-function fmt(n){ return '฿'+n.toLocaleString('th-TH'); }
+function fmt(n){ return '฿'+Math.round(n).toLocaleString('th-TH'); }
 function roundDown20(n){ if(n<=0) return 0; return Math.floor(n/20)*20; }
+
+function toggleGuest(){
+  _guestMode = document.getElementById('guestToggle').checked;
+  document.getElementById('guestSection').classList.toggle('show', _guestMode);
+  document.getElementById('normalMusician').style.display = _guestMode ? 'none' : 'flex';
+  document.getElementById('resultTitle').textContent = _guestMode ? 'รอบที่ 2 — แบ่งในวง' : 'ผลการคำนวณ';
+  calc();
+}
 
 function calc(){
   var b1000=v('b1000'),b500=v('b500'),b100=v('b100'),b50=v('b50'),b20=v('b20');
@@ -237,9 +328,44 @@ function calc(){
   var after=total-fundFixed-practice;
   document.getElementById('afterDeduct').textContent=fmt(Math.max(0,after));
 
-  var musicians=Math.max(1,Math.round(v('numMusicians')));
+  _total=total; _practice=practice;
 
-  if(after<=0){
+  var bandPool = after; // default: full pool goes to band
+
+  // === GUEST MODE: Round 1 ===
+  if(_guestMode){
+    var bandCount=Math.max(1,Math.round(v('bandCount')));
+    var guestCount=Math.max(1,Math.round(v('guestCount')));
+    var totalPeople=bandCount+guestCount;
+    document.getElementById('totalPeopleGuest').textContent=totalPeople+' คน';
+
+    if(after>0){
+      var exactPerPerson=after/totalPeople;
+      var roundedPerPerson=roundDown20(exactPerPerson);
+      var guestTotal=roundedPerPerson*guestCount;
+      var remainForBand=after-guestTotal; // what's left for band (round 2)
+
+      _guestPay=roundedPerPerson;
+      _guestCount=guestCount;
+      _remainForBand=remainForBand;
+
+      document.getElementById('guestResult').style.display='block';
+      document.getElementById('guestExact').textContent=fmt(exactPerPerson);
+      document.getElementById('guestPay').textContent=fmt(roundedPerPerson)+' / คน';
+      document.getElementById('remainForBand').textContent=fmt(remainForBand);
+
+      bandPool=remainForBand;
+    } else {
+      document.getElementById('guestResult').style.display='none';
+    }
+
+    _musicians=bandCount;
+  } else {
+    _musicians=Math.max(1,Math.round(v('numMusicians')));
+  }
+
+  // === Round 2 (or normal): split bandPool among band ===
+  if(bandPool<=0 || after<=0){
     ['perPersonExact','perPersonRounded','totalPaid','fundTotal'].forEach(function(id){
       document.getElementById(id).textContent='–';
     });
@@ -248,22 +374,25 @@ function calc(){
     return;
   }
 
-  var exact=after/musicians;
-  var rounded=roundDown20(exact);
-  var totalPaid=rounded*musicians;
-  var remainder=after-totalPaid;
-  var fundTotal=fundFixed+remainder;
+  var exact2=bandPool/_musicians;
+  var rounded2=roundDown20(exact2);
+  var totalPaid2=rounded2*_musicians;
+  var remainder2=bandPool-totalPaid2;
+  var fundTotal2=fundFixed+remainder2;
 
-  _rounded=rounded;_fund=fundTotal;_exact=exact;_total=total;_practice=practice;_musicians=musicians;
+  _rounded=rounded2; _fund=fundTotal2; _exact=exact2;
 
-  document.getElementById('perPersonExact').textContent=fmt(Math.round(exact));
-  document.getElementById('perPersonRounded').textContent=fmt(rounded);
-  document.getElementById('totalPaid').textContent=fmt(totalPaid);
-  document.getElementById('fundTotal').textContent=fmt(fundTotal);
+  document.getElementById('perPersonExact').textContent=fmt(exact2);
+  document.getElementById('perPersonRounded').textContent=fmt(rounded2);
+  document.getElementById('totalPaid').textContent=fmt(totalPaid2);
+  document.getElementById('fundTotal').textContent=fmt(fundTotal2);
 
   document.getElementById('summaryNotice').style.display='block';
+  document.getElementById('summaryNotice').className='notice'+(_guestMode?' amber':'');
+
+  var prefix = _guestMode ? '🎤 นักร้องรับเชิญ '+_guestCount+' คน ได้คนละ <strong>'+fmt(_guestPay)+'</strong><br>🎸 ' : '';
   document.getElementById('summaryText').innerHTML=
-    'จ่ายนักดนตรี <strong>'+musicians+' คน</strong> คนละ <strong>'+fmt(rounded)+'</strong> &nbsp;|&nbsp; เหลือเข้ากองทุน <strong>'+fmt(fundTotal)+'</strong>';
+    prefix+'จ่ายนักดนตรีในวง <strong>'+_musicians+' คน</strong> คนละ <strong>'+fmt(rounded2)+'</strong> &nbsp;|&nbsp; เหลือเข้ากองทุน <strong>'+fmt(fundTotal2)+'</strong>';
 
   document.getElementById('btnShare').style.display='block';
 }
@@ -273,40 +402,34 @@ function showCard(){
   var days=['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัส','ศุกร์','เสาร์'];
   document.getElementById('cardDate').textContent='วัน'+days[now.getDay()]+' '+now.getDate()+'/'+(now.getMonth()+1)+'/'+(now.getFullYear()+543);
   document.getElementById('cTotal').textContent=fmt(_total);
-  var practiceRow=document.getElementById('cPracticeRow');
+  var pr=document.getElementById('cPracticeRow');
   if(_practice>0){
     document.getElementById('cPractice').textContent=fmt(_practice);
-    practiceRow.style.display='flex';
-  } else {
-    practiceRow.style.display='none';
-  }
-  document.getElementById('cMusicians').textContent=_musicians+' คน';
+    pr.style.display='flex';
+  } else { pr.style.display='none'; }
+
+  var gb=document.getElementById('cGuestBlock');
+  if(_guestMode && _guestPay>0){
+    document.getElementById('cGuestCount').textContent=_guestCount;
+    document.getElementById('cGuestPayEach').textContent=fmt(_guestPay);
+    gb.style.display='block';
+  } else { gb.style.display='none'; }
+
   document.getElementById('cRounded').textContent=fmt(_rounded);
-  document.getElementById('cExact').textContent='ยอดจริง '+fmt(Math.round(_exact))+' → ปัดเป็น';
+  document.getElementById('cExact').textContent='ยอดจริง '+fmt(_exact)+' → ปัดเป็น';
   document.getElementById('cFund').textContent=fmt(_fund);
   document.getElementById('shareOverlay').classList.add('show');
 }
 
-function closeCard(){
-  document.getElementById('shareOverlay').classList.remove('show');
-}
-
-function overlayClick(e){
-  if(e.target===document.getElementById('shareOverlay')) closeCard();
-}
+function closeCard(){ document.getElementById('shareOverlay').classList.remove('show'); }
+function overlayClick(e){ if(e.target===document.getElementById('shareOverlay')) closeCard(); }
 
 function downloadCard(){
   var card=document.getElementById('shareCard');
   var btn=document.querySelector('.btn-download');
   btn.textContent='⏳ กำลังสร้างรูป...';
   btn.disabled=true;
-
-  html2canvas(card, {
-    scale: 3,
-    useCORS: true,
-    backgroundColor: '#1a1a2e',
-    logging: false
-  }).then(function(canvas){
+  html2canvas(card,{scale:3,useCORS:true,backgroundColor:'#1a1a2e',logging:false}).then(function(canvas){
     var link=document.createElement('a');
     var now=new Date();
     link.download='tip-'+now.getDate()+'-'+(now.getMonth()+1)+'-'+(now.getFullYear()+543)+'.png';
